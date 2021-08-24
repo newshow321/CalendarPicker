@@ -105,7 +105,6 @@ export default class CalendarPicker extends Component {
     ) {
       minMaxDates.minDate = this.props.minDate && moment(this.props.minDate);
       minMaxDates.maxDate = this.props.maxDate && moment(this.props.maxDate);
-      doStateUpdate = true;
     }
 
     if (prevProps.customDatesStyles !== this.props.customDatesStyles) {
@@ -241,7 +240,7 @@ export default class CalendarPicker extends Component {
     const date = moment({ year, month, day, hour: 12 });
 
     if (allowRangeSelection && prevSelectedStartDate && !prevSelectedEndDate) {
-      if (date.isSameOrAfter(prevSelectedStartDate, 'day')) {
+      if (date.isAfter(prevSelectedStartDate, 'day')) {
         const selectedStartDate = prevSelectedStartDate;
         const selectedEndDate = date;
         this.setState({
@@ -278,7 +277,7 @@ export default class CalendarPicker extends Component {
         onDateChange(this.state.selectedStartDate, Utils.START_DATE);
         if (syncEndDate) {
           // sync end date with parent - must be cleared if previously set.
-          onDateChange(null, Utils.END_DATE);
+          // onDateChange(null, Utils.END_DATE);
         }
       });
     }
@@ -377,7 +376,7 @@ export default class CalendarPicker extends Component {
       selectedStartDate: state.selectedStartDate,
       selectedEndDate: state.selectedEndDate,
       enableDateChange: this.props.enableDateChange,
-      firstDay: this.props.startFromMonday ? 1 : this.props.firstDay,
+      startFromMonday: this.props.startFromMonday,
       allowRangeSelection: this.props.allowRangeSelection,
       allowBackwardRangeSelect: this.props.allowBackwardRangeSelect,
       showDayStragglers: this.props.showDayStragglers,
@@ -460,7 +459,6 @@ export default class CalendarPicker extends Component {
 
     const {
       startFromMonday,
-      firstDay,
       initialDate,
       weekdays,
       months,
@@ -470,8 +468,6 @@ export default class CalendarPicker extends Component {
       nextTitle,
       previousTitleStyle,
       nextTitleStyle,
-      monthTitleStyle,
-      yearTitleStyle,
       textStyle,
       restrictMonthNavigation,
       headingLevel,
@@ -545,8 +541,6 @@ export default class CalendarPicker extends Component {
             nextTitle={nextTitle}
             previousTitleStyle={previousTitleStyle}
             nextTitleStyle={nextTitleStyle}
-            monthTitleStyle={monthTitleStyle}
-            yearTitleStyle={yearTitleStyle}
             textStyle={textStyle}
             restrictMonthNavigation={restrictMonthNavigation}
             minDate={minDate}
@@ -557,7 +551,7 @@ export default class CalendarPicker extends Component {
           />
           <Weekdays
             styles={styles}
-            firstDay={startFromMonday ? 1 : firstDay}
+            startFromMonday={startFromMonday}
             currentMonth={currentMonth}
             currentYear={currentYear}
             weekdays={weekdays}

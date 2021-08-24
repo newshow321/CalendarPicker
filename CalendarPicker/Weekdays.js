@@ -9,7 +9,7 @@ import { Utils } from './Utils';
 export default function Weekdays(props) {
   const {
     styles,
-    firstDay,
+    startFromMonday,
     currentMonth: month,
     currentYear: year,
     weekdays,
@@ -19,14 +19,14 @@ export default function Weekdays(props) {
   } = props;
 
   // dayOfWeekNums: ISO week day numbers
-  const dayOfWeekNums = Utils.getISOWeekdaysOrder(firstDay);
+  const dayOfWeekNums = startFromMonday ? [1, 2, 3, 4, 5, 6, 7] : [7, 1, 2, 3, 4, 5, 6];
   let wd = weekdays;
   if (!wd) {
-    wd = firstDay ? Utils.getWeekdays(firstDay) : Utils.WEEKDAYS; // English Week days Array
+    wd = startFromMonday? Utils.WEEKDAYS_MON : Utils.WEEKDAYS; // English Week days Array
   }
 
   return (
-    <View style={[styles.dayLabelsWrapper, dayLabelsWrapper]}>
+    <View style={[styles.dayLabelsWrapper, dayLabelsWrapper, {borderTopWidth: 0, borderBottomWidth: 0}]}>
       { wd.map((day, key) => {
         const dayOfWeekTextStyle = [styles.dayLabels, textStyle];
         let customDayOfWeekStyles = {};
@@ -36,8 +36,8 @@ export default function Weekdays(props) {
           dayOfWeekTextStyle.push(customDayOfWeekStyles.textStyle);
         }
         return (
-          <View style={customDayOfWeekStyles.style} key={key}>
-            <Text style={dayOfWeekTextStyle}>
+          <View style={[customDayOfWeekStyles.style]} key={key}>
+            <Text style={[...dayOfWeekTextStyle, {fontSize: 11, lineHeight: 20, fontFamily: 'CircularStd-Bold', color: '#2F3C65', letterSpacing: 0.12}]}>
               {day}
             </Text>
           </View>
@@ -49,7 +49,7 @@ export default function Weekdays(props) {
 }
 
 Weekdays.propTypes = {
-  firstDay: PropTypes.number,
+  startFromMonday: PropTypes.bool,
   weekdays: PropTypes.array,
   customDayHeaderStyles: PropTypes.func,
 };

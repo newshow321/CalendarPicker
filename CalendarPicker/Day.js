@@ -185,13 +185,22 @@ export default function Day(props) {
       return (
         <View style={[styles.dayWrapper, custom.containerStyle]}>
           <View style={[custom.style, computedSelectedDayStyle, selectedDayStyle ]}>
-            <Text style={[styles.dayLabel, textStyle,
-              styles.disabledText, disabledDatesTextStyle,
-              styles.selectedDisabledText, selectedDisabledDatesTextStyle,
-              overrideOutOfRangeTextStyle
-            ]}>
-              { day }
-            </Text>
+            {isToday ? (
+                <Text style={[styles.dayLabel, textStyle,
+                  styles.disabledText, disabledDatesTextStyle,
+                  styles.selectedDisabledText, selectedDisabledDatesTextStyle,
+                  overrideOutOfRangeTextStyle
+                , {color: '#006BEB',}]}>
+                  { day }
+                </Text>
+            ): (
+                <Text style={[styles.dayLabel, textStyle,
+                  styles.disabledText, disabledDatesTextStyle,
+                  styles.selectedDisabledText, selectedDisabledDatesTextStyle,
+                  overrideOutOfRangeTextStyle]}>
+                  { day }
+                </Text>
+            )}
           </View>
         </View>
       );
@@ -200,11 +209,18 @@ export default function Day(props) {
         <View style={[styles.dayWrapper, custom.containerStyle]}>
           <TouchableOpacity
             disabled={!enableDateChange}
-            style={[custom.style, computedSelectedDayStyle, selectedDayStyle ]}
+            style={[custom.style, computedSelectedDayStyle, selectedDayStyle]}
             onPress={() => onPressDay({year, month, day}) }>
-            <Text style={[styles.dayLabel, textStyle, custom.textStyle, selectedDayTextStyle]}>
-              { day }
-            </Text>
+            {isToday ? (
+                <Text style={[styles.dayLabel, textStyle, custom.textStyle, selectedDayTextStyle, {fontSize: 14, lineHeight: 22, fontFamily: 'CircularStd-Book',color:'#006BEB', letterSpacing: 0.22}]}>
+                  { day }
+                </Text>
+            ) : (
+                <Text style={[styles.dayLabel, textStyle, custom.textStyle, selectedDayTextStyle, {fontSize: 14, lineHeight: 22, fontFamily: 'CircularStd-Book', letterSpacing: 0.22}]}>
+                  { day }
+                </Text>
+            )}
+
           </TouchableOpacity>
         </View>
       );
@@ -221,7 +237,7 @@ export default function Day(props) {
     return (
       <View style={[styles.dayWrapper, custom.containerStyle]}>
         <View style={[styles.dayButton, custom.style]}>
-          <Text style={[textStyle, styles.disabledText, disabledDatesTextStyle, custom.textStyle]}>
+          <Text style={[textStyle, styles.disabledText, disabledDatesTextStyle, custom.textStyle, {fontSize: 14, lineHeight: 22, fontFamily: 'CircularStd-Book', letterSpacing: 0.22}]}>
             { day }
           </Text>
         </View>
