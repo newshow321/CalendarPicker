@@ -87,11 +87,13 @@ export function makeStyles(params) {
       height:30*scaler,
       borderRadius: getBorderRadiusByShape(scaler, dayShape),
       alignSelf: 'center',
-      justifyContent: 'center'
+      justifyContent: 'center',
+      borderWidth: 1,
+      borderColor: SELECTED_TEXT_COLOR
     },
 
     selectedDayBackground: {
-      backgroundColor: SELECTED_BG_COLOR,
+      // backgroundColor: SELECTED_BG_COLOR,
     },
 
     selectedToday: {
@@ -116,7 +118,8 @@ export function makeStyles(params) {
       height: 30*scaler,
       borderTopLeftRadius: 20*scaler,
       borderBottomLeftRadius: 20*scaler,
-      backgroundColor: SELECTED_BG_COLOR,
+      // backgroundColor: SELECTED_BG_COLOR,
+      backgroundColor: 'rgba(0, 6, 190, 0.03)',
       alignSelf: 'center',
       justifyContent: 'center'
     },
@@ -126,7 +129,8 @@ export function makeStyles(params) {
       height: 30*scaler,
       borderTopRightRadius: 20*scaler,
       borderBottomRightRadius: 20*scaler,
-      backgroundColor: SELECTED_BG_COLOR,
+      // backgroundColor: SELECTED_BG_COLOR,
+      backgroundColor: 'rgba(0, 6, 190, 0.03)',
       alignSelf: 'center',
       justifyContent: 'center'
     },
@@ -134,7 +138,7 @@ export function makeStyles(params) {
     inRangeDay: {
       width: 50*scaler,
       height: 30*scaler,
-      backgroundColor: SELECTED_BG_COLOR,
+      backgroundColor: 'rgba(0, 6, 190, 0.03)',
       alignSelf: 'center',
       justifyContent: 'center'
     },
@@ -183,16 +187,16 @@ export function makeStyles(params) {
 
     disabledText: {
       fontSize: 14*scaler,
-      color: '#BBBBBB',
+      color: 'rgba(47, 60, 101, 0.5)',
       alignSelf: 'center',
-      justifyContent: 'center'
+      justifyContent: 'center',
     },
 
     selectedDisabledText: {
       fontSize: 14*scaler,
       color: '#DDDDDD',
       alignSelf: 'center',
-      justifyContent: 'center'
+      justifyContent: 'center',
     },
 
     monthHeaderMainText: {

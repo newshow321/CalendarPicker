@@ -189,8 +189,7 @@ export default function Day(props) {
                 <Text style={[styles.dayLabel, textStyle,
                   styles.disabledText, disabledDatesTextStyle,
                   styles.selectedDisabledText, selectedDisabledDatesTextStyle,
-                  overrideOutOfRangeTextStyle
-                , {color: '#006BEB',}]}>
+                  overrideOutOfRangeTextStyle]}>
                   { day }
                 </Text>
             ): (
@@ -212,7 +211,7 @@ export default function Day(props) {
             style={[custom.style, computedSelectedDayStyle, selectedDayStyle]}
             onPress={() => onPressDay({year, month, day}) }>
             {isToday ? (
-                <Text style={[styles.dayLabel, textStyle, custom.textStyle, selectedDayTextStyle, {fontSize: 14, lineHeight: 22, fontFamily: 'CircularStd-Book',color:'#006BEB', letterSpacing: 0.22}]}>
+                <Text style={[styles.dayLabel, textStyle, custom.textStyle, selectedDayTextStyle, {fontSize: 14, lineHeight: 22, fontFamily: 'CircularStd-Book',color:'#000', letterSpacing: 0.22}]}>
                   { day }
                 </Text>
             ) : (
@@ -236,7 +235,7 @@ export default function Day(props) {
     }
     return (
       <View style={[styles.dayWrapper, custom.containerStyle]}>
-        <View style={[styles.dayButton, custom.style]}>
+        <View style={[styles.dayButton, custom.style, {borderRadius: 50, backgroundColor: 'rgba(47, 60, 101, 0.02)'}]}>
           <Text style={[textStyle, styles.disabledText, disabledDatesTextStyle, custom.textStyle, {fontSize: 14, lineHeight: 22, fontFamily: 'CircularStd-Book', letterSpacing: 0.22}]}>
             { day }
           </Text>
