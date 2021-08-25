@@ -187,7 +187,7 @@ export function makeStyles(params) {
 
     disabledText: {
       fontSize: 14*scaler,
-      color: 'rgba(47, 60, 101, 0.5)',
+      color: 'rgba(47, 60, 101, 0.2)',
       alignSelf: 'center',
       justifyContent: 'center',
     },

@@ -204,14 +204,27 @@ export default function Day(props) {
         </View>
       );
     } else {
+      const myCustomization = getCustomDateStyle({customDatesStyles, date: thisDay});
+      let myCustomBackground = null;
+      let myTextColor = null;
+      if (custom.isSelected) {
+        myCustomBackground = {
+          borderRadius: 50,
+          borderColor: '#0006BE',
+          borderWidth: 1,
+        };
+        myTextColor= {
+          color: '#0006BE'
+        };
+      }
       return (
         <View style={[styles.dayWrapper, custom.containerStyle]}>
           <TouchableOpacity
             disabled={!enableDateChange}
-            style={[custom.style, computedSelectedDayStyle, selectedDayStyle]}
+            style={[custom.style, computedSelectedDayStyle, selectedDayStyle, myCustomBackground]}
             onPress={() => onPressDay({year, month, day}) }>
             {isToday ? (
-                <Text style={[styles.dayLabel, textStyle, custom.textStyle, selectedDayTextStyle, {fontSize: 14, lineHeight: 22, fontFamily: 'CircularStd-Book',color:'#000', letterSpacing: 0.22}]}>
+                <Text style={[styles.dayLabel, textStyle, custom.textStyle, selectedDayTextStyle, {fontSize: 14, lineHeight: 22, fontFamily: 'CircularStd-Book',color:'#000', letterSpacing: 0.22}, myTextColor]}>
                   { day }
                 </Text>
             ) : (
@@ -235,7 +248,7 @@ export default function Day(props) {
     }
     return (
       <View style={[styles.dayWrapper, custom.containerStyle]}>
-        <View style={[styles.dayButton, custom.style, {borderRadius: 50, backgroundColor: 'rgba(47, 60, 101, 0.02)'}]}>
+        <View style={[styles.dayButton, custom.style]}>
           <Text style={[textStyle, styles.disabledText, disabledDatesTextStyle, custom.textStyle, {fontSize: 14, lineHeight: 22, fontFamily: 'CircularStd-Book', letterSpacing: 0.22}]}>
             { day }
           </Text>
