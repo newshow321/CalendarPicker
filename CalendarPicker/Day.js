@@ -207,6 +207,15 @@ export default function Day(props) {
       const myCustomization = getCustomDateStyle({customDatesStyles, date: thisDay});
       let myCustomBackground = null;
       let myTextColor = null;
+      if (isToday) {
+        myCustomBackground = {
+          borderRadius: 50,
+          backgroundColor: 'rgba(0, 6, 190, 0.03)',
+        };
+        myTextColor= {
+          color: '#0006BE'
+        };
+      }
       if (custom.isSelected) {
         myCustomBackground = {
           borderRadius: 50,
@@ -246,6 +255,15 @@ export default function Day(props) {
       custom.style = null;
       custom.textStyle = null;
     }
+    // if (isToday) {
+    //   myCustomBackground = {
+    //     borderRadius: 50,
+    //     backgroundColor: 'rgba(0, 6, 190, 0.03)',
+    //   };
+    //   myTextColor= {
+    //     color: '#0006BE'
+    //   };
+    // }
     return (
       <View style={[styles.dayWrapper, custom.containerStyle]}>
         <View style={[styles.dayButton, custom.style]}>
